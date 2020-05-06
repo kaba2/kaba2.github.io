@@ -27,6 +27,11 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
+# Builds also posts whose publication date is in the future.
+# This is needed for Github Pages to update new builds;
+# it's time is different.
+future: true
+
 include: [
   "_pages"
 ]
