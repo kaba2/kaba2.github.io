@@ -1,6 +1,6 @@
 ---
 title: Notations
-parent: mathematics
+parent: mathematics.md
 ---
 
 Symbol | Meaning | Example

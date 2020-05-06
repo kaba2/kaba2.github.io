@@ -1,6 +1,6 @@
 ---
 title: Splines
-parent: geometry
+parent: geometry.md
 ---
 
 This page discusses splines.

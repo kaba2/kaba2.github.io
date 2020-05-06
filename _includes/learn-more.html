@@ -1,6 +1,6 @@
 <!-- "Learn more" section links to all pages which specify this page as parent -->
-{%- assign current = page.title | slugify -%}
-{%- assign children = site.pages | where: "parent", current -%}
+{%- assign filename = page.path | split: "/" | last -%}
+{%- assign children = site.pages | where: "parent", filename -%}
 {%- if children.size > 0 -%}
     <!-- The section is given a class-name, so that it can be styled using CSS -->
     <div class="learn-more">
@@ -8,14 +8,13 @@
         <!-- The links are grouped into an unordered list -->
         <ol>
             {%- for child in site.pages -%}
-            {%- assign parent = child.parent -%}
-            {%- assign current = page.title | slugify -%}
-            {%- if parent == current -%}
-                <li> 
-                <!-- The links are named with the title of the linked-to page. -->
-                <a class="u-url" href="{{ child.url | relative_url }}">{{child.title}}</a>
-                </li>
-            {%- endif -%}
+                {%- assign parent = child.parent -%}
+                {%- if parent == filename -%}
+                    <li> 
+                    <!-- The links are named with the title of the linked-to page. -->
+                    <a class="u-url" href="{{ child.url | relative_url }}">{{child.title}}</a>
+                    </li>
+                {%- endif -%}
             {%- endfor -%}
         </ol>
     </div>

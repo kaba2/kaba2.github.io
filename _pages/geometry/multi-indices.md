@@ -1,6 +1,6 @@
 ---
 title: Multi-indices
-parent: mathematics
+parent: mathematics.md
 ---
 
 A _$$d$$-multi-index_ is an element of $$i \in \TN^d$$, where $$d \in \TN$$. For multi-indices $$i, j, n \in \TN^d$$, and $$x \in \TR^d$$, we define

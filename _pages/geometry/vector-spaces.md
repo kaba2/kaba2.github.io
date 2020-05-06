@@ -1,6 +1,6 @@
 ---
 title: Vector spaces
-parent: mathematics
+parent: mathematics.md
 ---
 
 A [_vector space_][VectorSpace] is a set $$X$$ together with two operations called _addition_ $$+ : X \times X \to X$$ and _scalar multiplication_ $$\cdot : \TR \times X \to X$$, which satisfy the following properties
