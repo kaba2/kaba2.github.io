@@ -20,6 +20,8 @@ I want to write documentation in this way. It is _fun_, an absolute necessity fo
 
 Jekyll is a static site generator; it converts such extended Markdown files to html files, which can then be placed anywhere. A git post-commit hook can be set up to regenerate the site on every commit to the repository. This demo is located on Github Pages, which provides just such a service.
 
+The style of the site is determined by css files.
+
 When on your local computer, Jekyll can generate the site on the fly as you modify it.
 
 ## Try it yourself
@@ -32,7 +34,7 @@ When on your local computer, Jekyll can generate the site on the fly as you modi
 
         git clone https://github.com/kaba2/kaba2.github.io.git devdocs
         cd devdocs
-* Run the following:
+* Run the following (I don't know why this is required, but live-reload won't work without it):
 
         gem uninstall eventmachine
         gem install eventmachine --platform ruby
@@ -59,25 +61,32 @@ When on your local computer, Jekyll can generate the site on the fly as you modi
 
     ![](images/bananas2.png)
 * Notice how the link to the child-page "Going bananas" is added automatically. This is again part of the default-layout.
-* Go to your editor again, and edit `going-bananas.md` to add some cool lists and tables:
-    ``` Markdown
-    ---
-    title: Going bananas
-    parent: get-started.md    
-    ---
+* Go to your editor again, and edit `going-bananas.md` to add some cool lists, tables, and code:
 
-    Bananas won't go bananas, because
-    * they are yellow, and
-    * they taste good.
+        ---
+        title: Going bananas
+        parent: get-started.md    
+        ---
 
-    Let's put that into a table:
+        Bananas won't go bananas, because
+        * they are yellow, and
+        * they taste good.
 
-    Property | Value
-    ---------|---------
-    Color    | Yellow
-    Taste    | Good
-    Mystical | $$ ax^2 + bx + c = 0 $$
-    ```
+        Let's put that into a table:
+
+        Banana property | Value
+        ----------------|---------
+        Color           | Yellow
+        Taste           | Good
+        Mystical        | $$ ax^2 + bx + c = 0 $$
+        Goes bananas    | No
+
+        ``` c#
+        public static UInt16 ReverseBytes(UInt16 value)
+        {
+        return (UInt16)((value & 0xFFU) << 8 | (value & 0xFF00U) >> 8);
+        }
+        ```
 * Visit <http://localhost:4000/going-bananas>. You should see something like this:
 
     ![](images/bananas3.png)

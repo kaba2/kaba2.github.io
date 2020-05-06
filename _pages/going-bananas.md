@@ -9,8 +9,16 @@ Bananas won't go bananas, because
 
 Let's put that into a table:
 
-Property | Value
----------|---------
-Color    | Yellow
-Taste    | Good
-Mystical | $$ ax^2 + bx + c = 0 $$
+Banana property | Value
+----------------|---------
+Color           | Yellow
+Taste           | Good
+Mystical        | $$ ax^2 + bx + c = 0 $$
+Goes bananas    | No
+
+``` c#
+public static UInt16 ReverseBytes(UInt16 value)
+{
+return (UInt16)((value & 0xFFU) << 8 | (value & 0xFF00U) >> 8);
+}
+```
