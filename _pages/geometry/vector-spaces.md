@@ -1,6 +1,5 @@
 ---
 title: Vector spaces
-author: kaba
 parent: mathematics
 ---
 

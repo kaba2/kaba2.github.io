@@ -1,5 +1,5 @@
 ---
 title: Mathematics
-author: kaba
 ---
+
 

@@ -4,9 +4,9 @@
 {%- if children.size > 0 -%}
     <!-- The section is given a class-name, so that it can be styled using CSS -->
     <div class="learn-more">
-        <h1>Learn more</h1>
+        <h2>Learn more</h2>
         <!-- The links are grouped into an unordered list -->
-        <ul>
+        <ol>
             {%- for child in site.pages -%}
             {%- assign parent = child.parent -%}
             {%- assign current = page.title | slugify -%}
@@ -17,6 +17,6 @@
                 </li>
             {%- endif -%}
             {%- endfor -%}
-        </ul>
+        </ol>
     </div>
 {%- endif -%}

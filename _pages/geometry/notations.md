@@ -1,6 +1,5 @@
 ---
 title: Notations
-author: kaba
 parent: mathematics
 ---
 

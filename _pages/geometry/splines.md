@@ -1,20 +1,19 @@
 ---
 title: Splines
-author: kaba
 parent: geometry
 ---
 
-This page discusses splines in anticipation of introducing spline-support in Napa.
+This page discusses splines.
 
-### Motivation
+<!-- ### Motivation
 
 NAPA uses [Coons patches](coons-patches). CAD software uses splines. This makes it difficult to transfer geometry back and forth between NAPA and other CAD software. Conversion between splines and Coons patches is lossy and approximate in both directions, and a good approximation in either direction requires a large number of patches. Present-day splines are able to solve a fundamental problem that was open for a long time: joining pieces of surface together, possibly smoothly, to form a single water-tight surface.
 
 The problem with Coons patches is that:
 * they are geometrically complicated, meaning that even if the boundary curves are cubic polynomials, the surface may have a very high polynomial degree, and 
-* piecewise Coons patches do not naturally allow for smoothness beyond the first derivative. However, ship-design requires, apart from isolated features, curvature-continuity and slowly changing curvature ("fairness").
+* piecewise Coons patches do not naturally allow for smoothness beyond the first derivative. However, ship-design requires, apart from isolated features, curvature-continuity and slowly changing curvature ("fairness"). -->
 
-### What are splines?
+## What are splines?
 
 The purpose of a spline is to parametrize a piecewise smooth manifold (with boundary) by a finite amount of data. Until very recently, a spline meant exclusively a piecewise polynomial/rational. However, then it was discovered that the properties of polynomials which make splines "work" can be abstracted, and that there are other classes of functions which fit that abstraction ("Quasi Extended Chebyshev piecewise space"). Time will tell whether these other classes find use in CAD or some other applications. We will concentrate only on the traditional piecewise polynomial/rational splines. Even then the question of what exactly is a spline is open. There is no single concept of a spline, but many. Could piecewise Coons patches be called a spline? Probably not. The reason is that splines are associated with piecewise-polynomial-like behavior, where the degree of a piece is relatively low (e.g. <= 10). It is the simplicity of the pieces which makes their associated problems solvable.
 
@@ -42,14 +41,14 @@ Some of the things common to most splines are:
     * Some splines may provide explicit control over which derivatives are continuous.
         * e.g. B-splines with multiple knots.
 
-### What is local refinement?
+## What is local refinement?
 
 A spline is locally refinable if there is a way to add a control point in it such that:
 * the shape is not changed, and
 * the number of additional control points can be bounded by a number which is independent on the number of existing control points.
 Ideally, addition of a control would not cause any other control point to be added, or at least keep their number minimal in some sense. An S-spline is an example of a spline which achieves this.
 
-### What are some existing splines?
+## What are some existing splines?
 
 * NURBS, where the domain is a rectangular grid. This has long been a standard representation and interchange format in CAD software. There are problems with NURBS:
     * NURBS can only represent a rectangular patch. Hence, modeling a complicated shape requires to combine multiple NURBS patches, which represents difficulties in maintaining smoothness constraints at the joins. 
@@ -68,7 +67,7 @@ Ideally, addition of a control would not cause any other control point to be add
         * PH
 * S-spline
 
-### What are polynomials?
+## What are polynomials?
 
 An _$$n$$-degree $$k$$-dimensional polynomial_ on a set $$X \subset \TR^d$$, where $$n \in \TN^d$$, is a function $$f : X \to \TR^k$$ for which there exists $$a : I_n \to \TR^k$$ such that 
 

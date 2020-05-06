@@ -1,6 +1,5 @@
 ---
 title: Multi-indices
-author: kaba
 parent: mathematics
 ---
 
