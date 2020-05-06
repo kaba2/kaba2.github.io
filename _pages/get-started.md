@@ -45,18 +45,17 @@ When on your local computer, Jekyll can generate the site on the fly as you modi
 * Open the browser, and visit <http://localhost:4000/get-started>.
 * Create a new file `_pages/going-bananas.md`, and write the following in it:
 
-    {% highlight Markdown %}
-    ---
-    title: Going bananas
-    parent: get-started.md    
-    ---
+        ---
+        title: Going bananas
+        parent: get-started.md    
+        ---
 
-    Bananas won't go bananas.
-    {% endhighlight %}
+        Bananas won't go bananas.
+
 * Visit <http://localhost:4000/going-bananas>. You should see something like this:
 
     ![](images/bananas1.png)
-* Notice how the link to the parent-page "Get started" is added automatically; this is because of how the default-layout is set up.
+* Notice how the link to the parent-page "Get started" is added automatically; this is because of how I have set the default-layout.
 * Click on the link to visit the "Get started" page. At the bottom of the page, you should see something like this:
 
     ![](images/bananas2.png)
