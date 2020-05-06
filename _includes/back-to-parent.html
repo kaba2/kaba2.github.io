@@ -1,0 +1,10 @@
+{% if page.parent %}
+    {%- for parent in site.pages -%}
+        {%- assign name = parent.title | slugify -%}
+        {%- if name == page.parent -%}
+            <div class="back-to-parent">
+                <a class="u-url" href="{{  parent.url | relative_url }}">Back to {{parent.title}}</a>
+            </div>
+        {%- endif -%}
+    {%- endfor -%}
+{% endif %}
