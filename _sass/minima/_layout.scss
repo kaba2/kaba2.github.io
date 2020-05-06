@@ -234,30 +234,32 @@
 		clear: left;
 	}
 	
-	h2, h3, h4 {
+	h1, h2, h3, h4 {
 		// Add some vertical space before and after a heading.
-    margin: 1em 0em 1em 0em;
-	}
-
-	h1, h2 {
-		// Draw a dotted line under the heading.
-		border-bottom: 1px solid #aca899;
-		// The height of the heading text; 
-		// controls the position of the border.
-		line-height: 1.5em;
+    margin: 0.75em 0em 0.75em 0em;
 	}
 
   h1
   {
-			@include relative-font-size(2.5);
-			color: #800000;
-      margin-top: 0em;
+    @include relative-font-size(2.5);
+    color: #800000;
+    margin-top: 0em;
+    // Draw a solid line under the heading.
+    border-bottom: 1px solid #aca899;
+		// The height of the heading text; 
+		// controls the position of the border.
+		line-height: 1.5em;
   }
 
   h2 
   {
     @include relative-font-size(2);
     color: #85A500;
+    // Draw a dotted line under the heading.
+    border-bottom: 1px dotted #aca899;
+		// The height of the heading text; 
+		// controls the position of the border.
+		line-height: 1.5em;
   }
 
   h3 
