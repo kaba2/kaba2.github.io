@@ -1,7 +1,18 @@
 <!-- Search bar -->
 <div id="search-bar" class="search-bar">
-    <input type="text" class="search-bar-input" onblur="onSearchBarLoseFocus()" onfocus="onSearchBarUpdate()" onkeyup="onSearchBarUpdate()" placeholder="Search for page..">
-    <div class="search-bar-results"></div>
+    <input type="text" 
+        class="search-bar-input" 
+        title="Prefix with ! to remove automatic modifications to search term."
+        onblur="onSearchBarLoseFocus()" 
+        onfocus="onSearchBarUpdate()" 
+        onkeyup="onSearchBarUpdate()" 
+        placeholder="Search for page..">
+    <div class="search-bar-results">
+        <!-- <p class="search-bar-syntax">+ = required, - = forbidden, * = any string, ! = disable modifications</p> -->
+        <p class="search-bar-term"></p>
+        <div class="search-bar-results-list">
+        </div>
+    </div>
 </div>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
@@ -14,9 +25,12 @@
             this.ref('id');
             this.field('title');
 
+            this.pipeline.remove(lunr.stemmer);
+            this.searchPipeline.remove(lunr.stemmer);
+
             // Add the data to lunr
             for (const key in searchData) { 
-                this.add({id: key, ...searchData[key]});
+                this.add({id: key, title: searchData[key].title});
             }
         });
 
@@ -37,7 +51,8 @@
     function onSearchBarLoseFocus() {
         const searchBar = document.getElementById('search-bar');
         const searchBarResults = searchBar.getElementsByClassName("search-bar-results")[0];
-        searchBarResults.innerHTML = '';
+        const searchBarResultsList = searchBarResults.getElementsByClassName("search-bar-results-list")[0];
+        searchBarResultsList.innerHTML = '';
         searchBarResults.style.display = 'none';
     }
 
@@ -45,8 +60,25 @@
         const searchBar = document.getElementById('search-bar');
         const searchBarInput = searchBar.getElementsByClassName('search-bar-input')[0];
         const searchBarResults = searchBar.getElementsByClassName("search-bar-results")[0];
+        const searchBarResultsList = searchBarResults.getElementsByClassName("search-bar-results-list")[0];
+        const searchBarTerm = searchBarResults.getElementsByClassName("search-bar-term")[0];
 
-        const searchTerm = searchBarInput.value;
+        var searchTerm = '';
+
+        const inputTerm = searchBarInput.value.trim();
+        if (inputTerm.startsWith('!')) {
+            searchTerm = inputTerm.substring(1);
+        } else {
+            // Javascript's split() does not produce empty array on empty string.
+            if (inputTerm != '') {
+                for (const inputTermPart of inputTerm.split(' ')) {
+                    searchTerm += '+*' + inputTermPart + '* ';
+                }
+            }
+            searchTerm = searchTerm.trim();
+        }
+
+        searchBarTerm.textContent = "Search term: " + searchTerm;
         const searchResults = searchIndex.search(searchTerm);
 
         var itemHtml = '';
@@ -71,7 +103,7 @@
         html += itemHtml;
         html += '</ol>';
         html += '</div>';
-        searchBarResults.innerHTML = html;
+        searchBarResultsList.innerHTML = html;
         searchBarResults.style.display = 'block';
     }
 
