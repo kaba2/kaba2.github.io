@@ -240,8 +240,9 @@
   }
   
   .search-bar-results {
-    display: none;
+    visibility: hidden;
     position: absolute;
+    z-index: 1;
     background-color: #eaffea;
     border: 1px solid #AAA;
     padding-left: 0.5em;
@@ -254,8 +255,8 @@
 
 // Styling for headings.
 .post {
-	margin-bottom: $spacing-unit;
-
+  margin-bottom: $spacing-unit;
+  
 	h1, h2, h3, h4 {
 		clear: left;
 	}
