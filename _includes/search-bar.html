@@ -1,0 +1,78 @@
+<!-- Search bar -->
+<div id="search-bar" class="search-bar">
+    <input type="text" class="search-bar-input" onblur="onSearchBarLoseFocus()" onfocus="onSearchBarUpdate()" onkeyup="onSearchBarUpdate()" placeholder="Search for page..">
+    <div class="search-bar-results"></div>
+</div>
+
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+
+<script>
+
+    function createSearchIndex(searchData) {
+        // Initalize lunr with the fields it will be searching on.
+        const searchIndex = lunr(function () {
+            this.ref('id');
+            this.field('title');
+
+            // Add the data to lunr
+            for (const key in searchData) { 
+                this.add({id: key, ...searchData[key]});
+            }
+        });
+
+        return searchIndex;
+    }
+
+    const searchData = {
+        {% for post in site.pages %} 
+        "{{ post.url | slugify }}" : {
+            title : "{{ post.title | xml_escape }}",
+            url: "{{ post.url | xml_escape }}"
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+    };
+
+    const searchIndex = createSearchIndex(searchData);
+
+    function onSearchBarLoseFocus() {
+        const searchBar = document.getElementById('search-bar');
+        const searchBarResults = searchBar.getElementsByClassName("search-bar-results")[0];
+        searchBarResults.innerHTML = '';
+        searchBarResults.style.display = 'none';
+    }
+
+    function onSearchBarUpdate() {
+        const searchBar = document.getElementById('search-bar');
+        const searchBarInput = searchBar.getElementsByClassName('search-bar-input')[0];
+        const searchBarResults = searchBar.getElementsByClassName("search-bar-results")[0];
+
+        const searchTerm = searchBarInput.value;
+        const searchResults = searchIndex.search(searchTerm);
+
+        var itemHtml = '';
+        for (const result of searchResults) {
+            const id = result.ref;
+            const entry = searchData[id];
+
+            itemHtml += `<li><a href = ${entry.url}>${entry.title}</a></li>`;
+
+            // const item = document.createElement("li");
+            // item.appendChild(document.createTextNode(entry.title));
+            // searchBarResults.appendChild(item);
+        }
+
+        if (itemHtml == '') {
+            itemHtml = '<li>No matches</li>';
+        }
+        
+        var html = '';
+        html += '<div class="learn-more">';
+        html += '<ol>'
+        html += itemHtml;
+        html += '</ol>';
+        html += '</div>';
+        searchBarResults.innerHTML = html;
+        searchBarResults.style.display = 'block';
+    }
+
+</script>
