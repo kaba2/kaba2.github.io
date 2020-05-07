@@ -7,16 +7,16 @@ A [_vector space_][VectorSpace] is a set $$X$$ together with two operations call
 
 [VectorSpace]: https://en.wikipedia.org/wiki/Vector_space
 
-Property | Meaning
----------|--------
-Additive associativity | $$ x + (y + z) = (x + y) + z $$
-Additive commutativity | $$ x + y = y + x $$
-Additive identity | $$ \exists 0 \in X: \forall x \in X: x + 0 = 0 + x $$
-Additive inverse | $$\forall x \in X : \exists -x \in X: x + (-x) = 0$$
-Multiplicative compatibility | $$\alpha \cdot (\beta \cdot x) = (\alpha \beta) \cdot v$$
-Multiplicative identity | $$1 \cdot x = x$$
-Additive distributivity 1 | $$\alpha \cdot (x + y) = \alpha \cdot x + \alpha \cdot y$$
-Additive distributivity 2 | $$(\alpha + \beta) \cdot x = \alpha \cdot x + \beta \cdot x$$
+Property                        | Meaning
+--------------------------------|--------------------------------------------
+Additive associativity          | $$ x + (y + z) = (x + y) + z $$
+Additive commutativity          | $$ x + y = y + x $$
+Additive identity               | $$ \exists 0 \in X: \forall x \in X: x + 0 = 0 + x $$
+Additive inverse                | $$ \forall x \in X : \exists -x \in X: x + (-x) = 0 $$
+Multiplicative compatibility    | $$ \alpha \cdot (\beta \cdot x) = (\alpha \beta) \cdot v $$
+Multiplicative identity         | $$ 1 \cdot x = x $$
+Additive distributivity 1       | $$ \alpha \cdot (x + y) = \alpha \cdot x + \alpha \cdot y $$
+Additive distributivity 2       | $$ (\alpha + \beta) \cdot x = \alpha \cdot x + \beta \cdot x $$
 
 where $$\alpha, \beta \in \TR, x, y, z \in X$$. The scalar multiplication is usually denoted by juxtaposition: $$\alpha x = \alpha \cdot x$$. The elements of of $X$ are called _vectors_.
 
