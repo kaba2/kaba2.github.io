@@ -9,86 +9,17 @@
     <div class="search-bar-results"></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@5.2.3"></script>
 <script>
-    const searchData = [
-        {% for post in site.pages %} 
-        {
-            id : "{{ post.url | slugify }}",
-            title : "{{ post.title | xml_escape }}",
-            url: "{{ post.url | xml_escape }}"
-        }{% unless forloop.last %},{% endunless %}
-        {%- endfor -%}
-    ];
-
-    searchData.sort((x, y) => x.title.toLowerCase().localeCompare(y.title.toLowerCase()));
-
-    const searchBar = document.getElementById('search-bar');
-    const searchBarInput = searchBar.getElementsByClassName('search-bar-input')[0];
-    const searchBarResults = searchBar.getElementsByClassName("search-bar-results")[0];
-
-    // Prevent losing search-bar focus when clicking on search-results.
-    searchBarResults.addEventListener(
-        "mousedown", 
-        event => {
-            event.preventDefault(); 
-            event.stopPropagation()
-        }
-    );
-
-    function createFuseSearchIndex(searchData) {
-        const options = {
-            // isCaseSensitive: false,
-            // includeScore: false,
-            // shouldSort: true,
-            // includeMatches: false,
-            // findAllMatches: false,
-            // minMatchCharLength: 1,
-            // location: 0,
-            // threshold: 0.6,
-            // distance: 100,
-            // useExtendedSearch: false,
-            keys: [
-                "title"
-            ]
-        };
-
-        return new Fuse(searchData, options);
-    }
-
-    const fuseSearchIndex = createFuseSearchIndex(searchData);
-
-    function onSearchBarLoseFocus() {
-        searchBarResults.innerHTML = '';
-        searchBarResults.style.visibility = 'hidden';
-    }
-
-    function searchFuse(searchTerm) {
-        const results = fuseSearchIndex.search(searchTerm);
-        return results.map(x => x.item);
-    }
-
-    function onSearchBarUpdate() {
-        const searchTerm = searchBarInput.value.trim();
-        const searchResults = searchTerm.length > 0 ? searchFuse(searchTerm) : searchData;
-
-        var itemHtml = '';
-        for (const entry of searchResults) {
-            itemHtml += `<li><a href = ${entry.url}>${entry.title}</a></li>`;
-        }
-
-        if (itemHtml == '') {
-            itemHtml = '<li>No matches</li>';
-        }
-        
-        var html = '';
-        html += '<div class="learn-more">';
-        html += '<ol>'
-        html += itemHtml;
-        html += '</ol>';
-        html += '</div>';
-        searchBarResults.innerHTML = html;
-        searchBarResults.style.visibility = 'visible';
-    }
-
+const searchData = [
+	{% for post in site.pages %} 
+	{
+		id : "{{ post.url | slugify }}",
+		title : "{{ post.title | xml_escape }}",
+		url: "{{ post.url | xml_escape }}"
+	}{% unless forloop.last %},{% endunless %}
+	{%- endfor -%}
+];
+searchData.sort((x, y) => x.title.toLowerCase().localeCompare(y.title.toLowerCase()));
 </script>
+
+<script type="text/javascript" src="assets/search-bar.js"></script>
